@@ -20,7 +20,8 @@ sudo apt-get -y install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-
 echo '* apt-get install (Dafny dependencies)'
 sudo apt-get -y install unzip git emacs mono-devel >> $LOGFILE
 echo '* apt-get install (Dafny development and testing dependencies)'
-sudo apt-get -y install python3 monodevelop >> $LOGFILE
+sudo apt-get -y install python3 python3-pip monodevelop >> $LOGFILE
+sudo apt-get -y apt-get install  python3-matplotlib python3-numpy >> $LOGFILE
 sudo pip3 install colorama >> $LOGFILE
 
 echo 'export TERM=xterm-256color' >> ~/.profile
@@ -82,7 +83,7 @@ emacs --batch --load ~/.emacs.d/init.el \
       >> $LOGFILE 2>&1
 
 echo '* PATH adjustments'
-echo 'export PATH="$PATH~/MSR/z3/bin:~/MSR/boogie/Binaries/:~/MSR/dafny/Binaries/' >> ~/.profile
+echo 'export PATH="$PATH:~/MSR/z3/bin:~/MSR/boogie/Binaries/:~/MSR/dafny/Binaries/"' >> ~/.profile
 
 echo ""
 echo '*********************************'
