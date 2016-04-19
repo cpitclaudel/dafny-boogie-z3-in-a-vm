@@ -21,8 +21,8 @@ echo '* apt-get install (Dafny dependencies)'
 sudo apt-get -y install unzip git emacs mono-devel >> $LOGFILE
 echo '* apt-get install (Dafny development and testing dependencies)'
 sudo apt-get -y install python3 python3-pip monodevelop >> $LOGFILE
-sudo apt-get -y apt-get install  python3-matplotlib python3-numpy >> $LOGFILE
-sudo pip3 install colorama >> $LOGFILE
+sudo apt-get -y apt-get install python3-matplotlib python3-numpy >> $LOGFILE
+sudo pip3 install colorama chardet >> $LOGFILE
 
 echo 'export TERM=xterm-256color' >> ~/.profile
 
