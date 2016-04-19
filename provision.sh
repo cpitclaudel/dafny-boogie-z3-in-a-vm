@@ -18,10 +18,10 @@ sudo apt-get -y update >> $LOGFILE
 echo '* apt-get install (VBox extensions)'
 sudo apt-get -y install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 >> $LOGFILE
 echo '* apt-get install (Dafny dependencies)'
-sudo apt-get -y install unzip git emacs mono-devel >> $LOGFILE
+sudo apt-get -y install unzip git mercurial emacs-snapshot mono-devel >> $LOGFILE
 echo '* apt-get install (Dafny development and testing dependencies)'
 sudo apt-get -y install python3 python3-pip monodevelop >> $LOGFILE
-sudo apt-get -y apt-get install python3-matplotlib python3-numpy >> $LOGFILE
+sudo apt-get -y install python3-matplotlib python3-numpy >> $LOGFILE
 sudo pip3 install colorama chardet >> $LOGFILE
 
 echo 'export TERM=xterm-256color' >> ~/.profile
@@ -31,12 +31,12 @@ echo '*********************************'
 echo '*** Downloading and building  ***'
 echo '*********************************'
 
-echo '* git clone boogie'
-git clone --quiet --depth 1 https://github.com/boogie-org/boogie.git MSR/boogie >> $LOGFILE
-echo '* git clone dafny'
-git clone --quiet --depth 1 https://github.com/cpitclaudel/dafny-experimental-import.git MSR/dafny >> $LOGFILE
 echo '* wget z3'
 wget --quiet -O /tmp/z3.zip https://github.com/Z3Prover/z3/releases/download/z3-4.4.0/z3-4.4.0-x64-ubuntu-14.04.zip >> $LOGFILE
+echo '* git clone boogie'
+git clone --quiet --depth 1 https://github.com/boogie-org/boogie.git MSR/boogie >> $LOGFILE
+echo '* hg clone dafny'
+hg clone --quiet https://hg.codeplex.com/dafny MSR/dafny >> $LOGFILE
 
 echo '* setup (z3)'
 unzip -o /tmp/z3.zip -d ~/MSR >> $LOGFILE
