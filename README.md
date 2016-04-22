@@ -4,4 +4,12 @@ This repo contains a [Vagrantfile](https://www.vagrantup.com/) to help quickly s
 
 The setup includes the three verifiers, and a bare Emacs setup pre-loaded with [boogie-friends](https://github.com/boogie-org/boogie-friends).
 
-For local installs, the [provisioning script](provision.sh) can also be a good starting point.
+## Local setup
+
+To set up a Dafny environment in your own VM, copy `provision.sh` and `init.el` to it, and run
+
+```bash
+BASEDIR="$HOME" ./provision.sh
+```
+
+Feel free to study the [provisioning script](provision.sh) for more information.

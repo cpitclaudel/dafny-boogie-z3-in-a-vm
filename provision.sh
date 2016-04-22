@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export LOGDIR=/vagrant
-export LOGFILE=$LOGDIR/provision.log
+: ${BASEDIR:=/vagrant}
+export LOGFILE="$BASEDIR/provision.log"
 export DEBIAN_FRONTEND=noninteractive
 
 echo "" > $LOGFILE
@@ -20,9 +20,14 @@ sudo apt-get -y install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-
 echo '* apt-get install (Dafny dependencies)'
 sudo apt-get -y install unzip git mercurial emacs-snapshot mono-devel >> $LOGFILE
 echo '* apt-get install (Dafny development and testing dependencies)'
-sudo apt-get -y install python3 python3-pip monodevelop >> $LOGFILE
-sudo apt-get -y install python3-matplotlib python3-numpy >> $LOGFILE
+sudo apt-get -y install python3 python3-pip >> $LOGFILE
+echo '* apt-get install (CAV 2016 AEC)'
+sudo apt-get -y install monodevelop >> $LOGFILE 2>&1
+sudo apt-get -y install monodevelop texlive-latex-base xzdec dvipng python3-pyqt4 python3-matplotlib python3-numpy >> $LOGFILE
+git clone --quiet --depth 1 https://github.com/cpitclaudel/python-clib/ ~/.local/lib/python3.4/site-packages/clib >> $LOGFILE
 sudo pip3 install colorama chardet >> $LOGFILE
+tlmgr init-usertree >> $LOGFILE 2>&1
+tlmgr install type1cm ucs >> $LOGFILE 2>&1
 
 echo 'export TERM=xterm-256color' >> ~/.profile
 
@@ -65,7 +70,7 @@ echo '*********************************'
 echo '***      Setting up Emacs     ***'
 echo '*********************************'
 
-echo '* fonts'
+echo '* font setup'
 mkdir -p ~/.fonts >> $LOGFILE
 wget --quiet -O ~/.fonts/symbola-monospace.ttf https://raw.githubusercontent.com/cpitclaudel/monospacifier/master/fonts/Symbola_monospacified_for_UbuntuMono.ttf >> $LOGFILE
 wget --quiet -O /tmp/ubuntu-fonts.zip http://font.ubuntu.com/download/ubuntu-font-family-0.83.zip >> $LOGFILE
@@ -73,7 +78,7 @@ unzip -o /tmp/ubuntu-fonts.zip -d ~/.fonts/ >> $LOGFILE
 
 echo '* Emacs configuration'
 mkdir -p ~/.emacs.d/
-cp /vagrant/init.el ~/.emacs.d/init.el
+cp "$BASEDIR/init.el" ~/.emacs.d/init.el
 
 echo '* package install'
 emacs --batch --load ~/.emacs.d/init.el \
@@ -83,7 +88,7 @@ emacs --batch --load ~/.emacs.d/init.el \
       >> $LOGFILE 2>&1
 
 echo '* PATH adjustments'
-echo 'export PATH="$PATH:~/MSR/z3/bin:~/MSR/boogie/Binaries/:~/MSR/dafny/Binaries/"' >> ~/.profile
+echo 'export PATH="$PATH:$HOME/MSR/z3/bin:$HOME/MSR/boogie/Binaries/:$HOME/MSR/dafny/Binaries/"' >> ~/.profile
 
 echo ""
 echo '*********************************'
