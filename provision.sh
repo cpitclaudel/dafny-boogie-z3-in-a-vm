@@ -84,7 +84,10 @@ mkdir -p ~/.emacs.d/
 cp "$BASEDIR/init.el" ~/.emacs.d/init.el
 
 echo '* package install'
-emacs --batch --load ~/.emacs.d/init.el \
+emacs --batch -q \
+      --eval "(require 'package)" \
+      --eval "(add-to-list 'package-archives '(\"melpa\" . \"https://melpa.org/packages/\"))" \
+      --eval "(package-initialize)" \
       --eval "(package-refresh-contents)" \
       --eval "(package-install 'csharp-mode)" \
       --eval "(package-install 'markdown-mode)" \
