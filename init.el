@@ -7,6 +7,7 @@
               flycheck-display-errors-delay 0.15
               x-gtk-use-system-tooltips nil
               dafny-verification-backend 'server
+              dafny-prover-custom-args '("/autoTriggers:1")
               flycheck-z3-smt2-executable "~/MSR/z3/bin/z3"
               flycheck-dafny-executable "~/MSR/dafny/Binaries/dafny"
               flycheck-boogie-executable "~/MSR/boogie/Binaries/Boogie.exe"
