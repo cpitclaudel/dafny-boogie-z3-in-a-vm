@@ -12,6 +12,10 @@ echo '*********************************'
 echo '***  Installing dependencies  ***'
 echo '*********************************'
 
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
+     --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF >> $LOGFILE 2>&1
+echo "deb http://download.mono-project.com/repo/debian wheezy main" | \
+    sudo tee /etc/apt/sources.list.d/mono-xamarin.list >> $LOGFILE 2>&1
 echo '* apt-get update'
 sudo add-apt-repository -y ppa:ubuntu-elisp/ppa >> $LOGFILE 2>&1
 sudo apt-get -qq update >> $LOGFILE 2>&1
