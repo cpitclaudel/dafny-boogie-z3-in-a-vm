@@ -2,7 +2,8 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(setq-default dafny-verification-backend 'server
+(setq-default inhibit-startup-screen t
+              dafny-verification-backend 'server
               flycheck-z3-smt2-executable "~/MSR/z3/bin/z3"
               flycheck-dafny-executable "~/MSR/dafny/Binaries/dafny"
               flycheck-boogie-executable "~/MSR/boogie/Binaries/Boogie.exe"

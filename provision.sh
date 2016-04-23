@@ -14,17 +14,16 @@ echo '*********************************'
 
 echo '* apt-get update'
 sudo add-apt-repository -y ppa:ubuntu-elisp/ppa >> $LOGFILE 2>&1
-sudo apt-get -y update >> $LOGFILE
+sudo apt-get -qq update >> $LOGFILE 2>&1
 echo '* apt-get install (VBox extensions)'
-sudo apt-get -y install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 >> $LOGFILE
+sudo apt-get -qq install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 >> $LOGFILE 2>&1
 echo '* apt-get install (Dafny dependencies)'
-sudo apt-get -y install unzip git mercurial emacs-snapshot mono-devel >> $LOGFILE
-echo '* apt-get install (Dafny development and testing dependencies)'
-sudo apt-get -y install python3 python3-pip >> $LOGFILE
+sudo apt-get -qq install unzip git emacs-snapshot mercurial mono-devel >> $LOGFILE 2>&1
 echo '* apt-get install (CAV 2016 AEC)'
-sudo apt-get -y install monodevelop >> $LOGFILE 2>&1
-sudo apt-get -y install monodevelop texlive-latex-base xzdec dvipng python3-pyqt4 python3-matplotlib python3-numpy >> $LOGFILE
-git clone --quiet --depth 1 https://github.com/cpitclaudel/python-clib/ ~/.local/lib/python3.4/site-packages/clib >> $LOGFILE
+sudo apt-get -qq install python3 python3-pip monodevelop texlive-latex-base xzdec \
+     dvipng python3-pyqt4 python3-matplotlib python3-numpy >> $LOGFILE 2>&1
+git clone --quiet --depth 1 https://github.com/cpitclaudel/python-clib/ \
+    ~/.local/lib/python3.4/site-packages/clib >> $LOGFILE
 sudo pip3 install colorama chardet >> $LOGFILE
 tlmgr init-usertree >> $LOGFILE 2>&1
 tlmgr install type1cm ucs >> $LOGFILE 2>&1
@@ -84,6 +83,7 @@ echo '* package install'
 emacs --batch --load ~/.emacs.d/init.el \
       --eval "(package-refresh-contents)" \
       --eval "(package-install 'csharp-mode)" \
+      --eval "(package-install 'markdown-mode)" \
       --eval "(package-install 'boogie-friends)" \
       >> $LOGFILE 2>&1
 
