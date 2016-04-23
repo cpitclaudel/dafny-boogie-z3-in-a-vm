@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-: ${BASEDIR:=/vagrant}
+BASEDIR=`cd "${BASEDIR:=/vagrant}" 2>/dev/null || true; pwd`
 export LOGFILE="$BASEDIR/provision.log"
 export DEBIAN_FRONTEND=noninteractive
 
