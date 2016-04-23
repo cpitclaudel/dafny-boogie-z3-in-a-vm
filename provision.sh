@@ -85,6 +85,7 @@ emacs --batch --load ~/.emacs.d/init.el \
       --eval "(package-install 'csharp-mode)" \
       --eval "(package-install 'markdown-mode)" \
       --eval "(package-install 'boogie-friends)" \
+      --eval "(package-install 'flycheck-pos-tip)" \
       >> $LOGFILE 2>&1
 
 echo '* PATH adjustments'

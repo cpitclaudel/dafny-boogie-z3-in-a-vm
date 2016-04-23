@@ -3,6 +3,9 @@
 (package-initialize)
 
 (setq-default inhibit-startup-screen t
+              flycheck-pos-tip-timeout 20
+              flycheck-display-errors-delay 0.15
+              x-gtk-use-system-tooltips nil
               dafny-verification-backend 'server
               flycheck-z3-smt2-executable "~/MSR/z3/bin/z3"
               flycheck-dafny-executable "~/MSR/dafny/Binaries/dafny"
@@ -19,3 +22,6 @@
 ;; Basic usability
 (xterm-mouse-mode)
 (load-theme 'tango-dark t)
+
+;; Error tooltips
+(flycheck-pos-tip-mode)
